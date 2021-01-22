@@ -8,6 +8,9 @@ import { actionFilterList } from '../action/action'
 // store
 import { MainContext, mainEnum } from '../context/context';
 
+// api path enum
+import { apiFetchEnum } from '../api/apiEnum'
+
 // components
 import { Wrapper } from './Wrapper';
 
@@ -21,8 +24,20 @@ export const App = () => {
 
   useEffect(
     () => {
-      console.log('useEffect');
-    }, []
+      (async () => {
+        const city = await apiFetchEnum['getWoeid']('taipei');
+        const woeid = city[0]['woeid'];
+        const cityWithForecast = await apiFetchEnum['getFiveForecast'](woeid);
+
+        const result = {
+          type: actionFilterList.INIT,
+          cityWithForecast: cityWithForecast
+        }
+
+        mainlyReducerDispatch(result);
+      })()
+
+    }, [dataList]
   )
 
   return (
