@@ -42,7 +42,10 @@ module.exports = {
   },
   devServer: {
     port: 5000,
-    open: true
+    open: true,
+    // proxy: {
+    //   '/api': 'http://localhost:8080'
+    // }
   },
   plugins: [
     new CleanWebpackPlugin(),
