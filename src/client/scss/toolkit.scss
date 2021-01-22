@@ -1,0 +1,16 @@
+// mixin
+@mixin radius($radius: 3px) {
+  border-radius: $radius;
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  -o-border-radius: $radius;
+}
+
+@mixin trasition($props: all) {
+  transition: $props 0.3s linear;
+  -webkit-transition: $props 0.3s linear;
+  -moz-transition: $props 0.3s linear;
+  -ms-transition: $props 0.3s linear;
+  -o-transition: $props 0.3s linear;
+}

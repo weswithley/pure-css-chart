@@ -1,0 +1,36 @@
+body {
+  max-width: 1370px;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  background-color: #eeeeee;
+  font-size: 16px;
+  letter-spacing: 1px;
+  font-family: "微軟正黑體";
+  margin: 0 auto;
+  padding: 0;
+}
+
+html, body, #root{
+  min-height: 100vh;
+}
+
+a,
+a:active,
+a:focus :hover,
+a:link,
+a:visited {
+  text-decoration: none;
+  color: #666;
+  display: inline-block;
+}
+
+.container {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+input,
+button {
+  outline: none;
+}
