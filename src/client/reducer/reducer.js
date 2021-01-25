@@ -9,11 +9,9 @@ export const mainlyReducer = (state, action) => {
   switch (action.type) {
     case actionFilterList.INIT:
       result = action['cityWithForecast']['consolidated_weather'];
-      console.log('result-', result);
       return result
 
     case actionFilterList.SEARCH:
-      console.log('SEARCH');
       return state
       // return result
 

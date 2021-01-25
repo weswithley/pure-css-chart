@@ -20,13 +20,13 @@ import '../scss/style.scss';
 export const App = () => {
   const { dataList, mainlyReducer } = mainEnum;
   const [newDataList, mainlyReducerDispatch] = useReducer(mainlyReducer, dataList);
-  const context = { newDataList, dataList, mainlyReducerDispatch }
+  const context = { newDataList, dataList, mainlyReducerDispatch };
 
   useEffect(
     () => {
       (async () => {
         const city = await apiFetchEnum['getWoeid']('taipei');
-        const woeid = city[0]['woeid'];
+        const woeid = city.length > 0 ? city[0]['woeid'] : '';
         const cityWithForecast = await apiFetchEnum['getFiveForecast'](woeid);
 
         const result = {
