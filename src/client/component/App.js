@@ -1,6 +1,5 @@
 // library
-import React, { useEffect, useReducer } from 'react';
-import axios from 'axios';
+import React, { useEffect, useReducer, useState } from 'react';
 
 // action
 import { actionFilterList } from '../action/action'
@@ -20,18 +19,23 @@ import '../scss/style.scss';
 export const App = () => {
   const { defaultCity, dataList, mainlyReducer } = mainEnum;
   const [newDataList, mainlyReducerDispatch] = useReducer(mainlyReducer, dataList);
-  const context = { defaultCity, newDataList, mainlyReducerDispatch };
+  const [newCity, mainlyStateDispatch] = useState(defaultCity);
+  const context = { defaultCity, newCity, mainlyStateDispatch, newDataList, mainlyReducerDispatch };
 
   useEffect(
     () => {
       (async () => {
         const cityWithForecast = await getFiveDaysForcast(defaultCity);
-        const result = {
+        const resultData = {
           type: actionFilterList.INIT,
           cityWithForecast
         }
 
-        mainlyReducerDispatch(result);
+        mainlyReducerDispatch(resultData);
+
+        const tempCity = cityWithForecast['parent']['title'] + '/' + cityWithForecast['title']
+        mainlyStateDispatch(tempCity);
+
       })()
 
     }, [dataList]

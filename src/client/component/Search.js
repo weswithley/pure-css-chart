@@ -14,7 +14,7 @@ import { MainContext } from '../context/context';
 import '../scss/search.scss';
 
 export const Search = () => {
-  const { defaultCity, mainlyReducerDispatch } = useContext(MainContext);
+  const { defaultCity, mainlyStateDispatch, mainlyReducerDispatch } = useContext(MainContext);
   const searchInputRef = useRef(null);
 
   const onSubmit = () => {
@@ -30,6 +30,9 @@ export const Search = () => {
         }
 
         mainlyReducerDispatch(params);
+
+        const tempCity = cityWithForecast['parent']['title'] + '/' + cityWithForecast['title']
+        mainlyStateDispatch(tempCity);
       } catch (error) {
         searchInputRef.current.style.borderColor = '#be184a';
         console.error("Your searching keywords might wrong...");
