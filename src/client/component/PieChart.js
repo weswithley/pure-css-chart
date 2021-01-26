@@ -18,7 +18,7 @@ export const PieChart = (props) => {
         chartList.map((chartValue, index) => {
             const chartDegree = Math.round(chartValue / 100 * 360);
             const chartStyle = {
-              backgroundImage: `conic-gradient(#4071b1 0deg ${chartDegree + 'deg'}, #18b9be ${chartDegree + 'deg'})`
+              backgroundImage: `conic-gradient(#1889be 0deg ${chartDegree + 'deg'}, #aaaaaa ${chartDegree + 'deg'})`
             }
 
             return (

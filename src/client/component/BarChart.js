@@ -23,8 +23,14 @@ export const BarChart = (props) => {
               height: Math.ceil(chartValue / (end + 10) * 100) + '%'
             }
 
+            const thisYear = new Date().getFullYear() + '-';
+            const tempDate = date[index].split(thisYear)[1].replace('-', '/');
+
             return (
-              <div className="chart-body-item" style={chartStyle} key={'bar-chart-body-item-' + index}>{chartValue + transformedUnit}</div>
+              <div className="chart-body-item" style={chartStyle} key={'bar-chart-body-item-' + index}>
+                <div className="chart-body-value">{chartValue + transformedUnit}</div>
+                <div className="chart-body-date">{tempDate}</div>
+              </div>
             )
           })
         }
