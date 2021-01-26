@@ -9,7 +9,7 @@ import { BarChart } from './BarChart';
 import { PieChart } from './PieChart';
 
 // scss
-import '../scss/DataList.scss';
+import '../scss/dataList.scss';
 
 const organizeBarChartList = (date, start, end, unit, chartList) => {
   const chartData = {

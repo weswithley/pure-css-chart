@@ -1,9 +1,6 @@
 // action
 import { actionFilterList } from '../action/action';
 
-// toolkit
-import {} from '../toolkit/toolkit';
-
 export const mainlyReducer = (state, action) => {
   let result = [];
   switch (action.type) {
@@ -12,8 +9,8 @@ export const mainlyReducer = (state, action) => {
       return result
 
     case actionFilterList.SEARCH:
-      return state
-      // return result
+      result = action['cityWithForecast']['consolidated_weather'];
+      return result
 
     default:
       return state

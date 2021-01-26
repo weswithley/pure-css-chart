@@ -1,0 +1,60 @@
+@import './toolkit';
+
+.search-wrap{
+  display: grid;
+  justify-items: end;
+  .search {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(1, 1fr) 100px;
+    font-size: 0.9rem;
+    & > input {
+      height: 30px;
+      color: #18b9be;
+      font-size: 0.9rem;
+      padding: 0 15px;
+      border: 1px solid #ccc;
+
+      @include radius(3px);
+      @include trasition(all);
+
+      &::placeholder{
+        color: #ccc;
+      }
+
+      &:hover {
+        border: 1px solid #18b9be;
+
+        @include trasition(all);
+      }
+    }
+    & > button {
+      height: 30px;
+      color: #999999;
+      border: 1px solid #adadad;
+      background-color: #eee;
+      padding: 0 20px;
+
+      @include radius(3px);
+      @include trasition(all);
+
+      cursor: pointer;
+      &:hover {
+        color: #fff;
+        border: 1px solid #0f8b8f;
+        background-color: #18b9be;
+
+        @include trasition(all);
+      }
+    }
+  }
+}
+
+@media (max-width:480px){
+  .search-wrap{
+    justify-items: initial;
+    .search{
+      grid-template-columns: auto;
+    }
+  }
+}

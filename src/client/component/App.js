@@ -1,5 +1,5 @@
 // library
-import React, { useEffect, useReducer, useState } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import axios from 'axios';
 
 // action
@@ -8,8 +8,8 @@ import { actionFilterList } from '../action/action'
 // store
 import { MainContext, mainEnum } from '../context/context';
 
-// api path enum
-import { apiFetchEnum } from '../api/apiEnum'
+// toolkit
+import { getFiveDaysForcast } from '../toolkit/toolkit';
 
 // components
 import { Wrapper } from './Wrapper';
@@ -18,20 +18,17 @@ import { Wrapper } from './Wrapper';
 import '../scss/style.scss';
 
 export const App = () => {
-  const { dataList, mainlyReducer } = mainEnum;
+  const { defaultCity, dataList, mainlyReducer } = mainEnum;
   const [newDataList, mainlyReducerDispatch] = useReducer(mainlyReducer, dataList);
-  const context = { newDataList, dataList, mainlyReducerDispatch };
+  const context = { defaultCity, newDataList, mainlyReducerDispatch };
 
   useEffect(
     () => {
       (async () => {
-        const city = await apiFetchEnum['getWoeid']('taipei');
-        const woeid = city.length > 0 ? city[0]['woeid'] : '';
-        const cityWithForecast = await apiFetchEnum['getFiveForecast'](woeid);
-
+        const cityWithForecast = await getFiveDaysForcast(defaultCity);
         const result = {
           type: actionFilterList.INIT,
-          cityWithForecast: cityWithForecast
+          cityWithForecast
         }
 
         mainlyReducerDispatch(result);
