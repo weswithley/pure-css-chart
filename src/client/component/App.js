@@ -1,12 +1,14 @@
 // library
 import React, { useEffect, useReducer, useState } from 'react';
-import axios from 'axios';
 
 // action
 import { actionFilterList } from '../action/action'
 
 // store
 import { MainContext, mainEnum } from '../context/context';
+
+// toolkit
+import { getFiveDaysForcast } from '../toolkit/toolkit';
 
 // components
 import { Wrapper } from './Wrapper';
@@ -15,14 +17,28 @@ import { Wrapper } from './Wrapper';
 import '../scss/style.scss';
 
 export const App = () => {
-  const { dataList, mainlyReducer } = mainEnum;
+  const { defaultCity, dataList, mainlyReducer } = mainEnum;
   const [newDataList, mainlyReducerDispatch] = useReducer(mainlyReducer, dataList);
-  const context = { newDataList, dataList, mainlyReducerDispatch }
+  const [newCity, mainlyStateDispatch] = useState(defaultCity);
+  const context = { defaultCity, newCity, mainlyStateDispatch, newDataList, mainlyReducerDispatch };
 
   useEffect(
     () => {
-      console.log('useEffect');
-    }, []
+      (async () => {
+        const cityWithForecast = await getFiveDaysForcast(defaultCity);
+        const resultData = {
+          type: actionFilterList.INIT,
+          cityWithForecast
+        }
+
+        mainlyReducerDispatch(resultData);
+
+        const tempCity = cityWithForecast['parent']['title'] + '/' + cityWithForecast['title']
+        mainlyStateDispatch(tempCity);
+
+      })()
+
+    }, [dataList]
   )
 
   return (
