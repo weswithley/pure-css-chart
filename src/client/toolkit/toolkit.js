@@ -1,5 +1,5 @@
 // api path enum
-import { apiFetchEnum } from '../api/apiEnum'
+import { apiFetchEnum } from '../api/apiEnum';
 
 export const organizePeriodList = (start, end) => {
   let periodList = [];
@@ -23,8 +23,13 @@ export const transformUnit = (unit) => {
 }
 
 export const getFiveDaysForcast = async (cityKeyWord) => {
-  const city = await apiFetchEnum['getWoeid'](cityKeyWord);
-  const woeid = city.length > 0 ? city[0]['woeid'] : '';
-  const cityWithForecast = await apiFetchEnum['getFiveForecast'](woeid);
+  const cityWithForecast = await apiFetchEnum['getFiveForecast'](cityKeyWord);
   return cityWithForecast
 }
+
+// export const getFiveDaysForcast = async (cityKeyWord) => {
+//   const city = await apiFetchEnum['getWoeid'](cityKeyWord);
+//   const woeid = city.length > 0 ? city[0]['woeid'] : '';
+//   const cityWithForecast = await apiFetchEnum['getFiveForecast'](woeid);
+//   return cityWithForecast
+// }

@@ -1,28 +1,15 @@
-const dname = 'https://www.metaweather.com/api';
+// toolkit
+const getFiveDaysForcast = require('./toolkit/toolkit.js');
 const express = require('express');
-const axios = require('axios');
-var userObjects = null;
+const app = express();
 
 
-const apiPathEnum = {
-  'woeid': (locate) => '/location/search/?query=' + locate,
-  'fiveForecast': (woeid) => '/location/' + woeid
-}
+app.use(express.static('bundle'));
+app.get('/api/fiveforecast', async (req, res) => {
+  console.log('req-', req);
+  const cityWithForecast = await getFiveDaysForcast('taipei');
+  console.log('api/forecast-', cityWithForecast);
+  return res.send(cityWithForecast);
+})
 
-// const app = express();
-
-// axios.get(dname)
-//     .then( res => {
-//         userObjects = res.data.results[0];
-//     })
-//     .catch( error => {
-//         console.log('error', error);
-//     })
-
-// app.use(express.static('dist'));
-// app.get('/api/woeid', (req, res) => {
-//         return res.send({ username: userObjects })
-//     }
-// )
-
-// app.listen(8080, () => console.log('Listening on port 8080!'));
+app.listen(8080, () => console.log('Listening on port 8080!'));

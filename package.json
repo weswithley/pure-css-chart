@@ -4,11 +4,10 @@
   "description": "M800 exam",
   "main": "webpack.config.js",
   "scripts": {
-    "build": "webpack --mode production",
-    "start": "npm run build",
-    "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
+    "build": "webpack",
+    "start": "webpack-dev-server --mode development --devtool inline-source-map --hot",
     "server": "nodemon src/server/index.js",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run start\""
   },
   "repository": {
     "type": "git",
@@ -19,6 +18,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "babel-polyfill": "^6.26.0",
+    "nodemon": "^2.0.7",
     "npm": "^6.14.6",
     "react": "^16.5.2",
     "react-dom": "^16.5.2"
@@ -29,14 +29,16 @@
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.0",
-    "clean-webpack-plugin": "^3.0.0",
-    "css-loader": "^1.0.0",
-    "file-loader": "^2.0.0",
-    "html-webpack-plugin": "^3.2.0",
     "node-sass": "^4.13.1",
     "sass-loader": "^8.0.2",
     "style-loader": "^0.23.0",
     "url-loader": "^1.0.1",
+    "css-loader": "^1.0.0",
+    "file-loader": "^2.0.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "terser-webpack-plugin": "^4.2.3",
+    "concurrently": "^5.3.0",
     "webpack": "^4.5.0",
     "webpack-cli": "^3.0.8",
     "webpack-dev-server": "^3.1.3"
