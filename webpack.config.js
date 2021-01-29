@@ -1,10 +1,12 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const TerserPlugin = require("terser-webpack-plugin");
 
 const outputDirectory = 'bundle';
 
 module.exports = {
+  // mode: 'development',
   entry: ['babel-polyfill', './src/client/index.js'],
   output: {
     path: path.join(__dirname, outputDirectory),
@@ -13,7 +15,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/i,
+        test: /\.(js|jsx)$/i,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader'
@@ -43,9 +45,14 @@ module.exports = {
   devServer: {
     port: 5000,
     open: true,
-    // proxy: {
-    //   '/api': 'http://localhost:8080'
-    // }
+    // hot: true, // already use --hot in package.json sciprt, either one is ok.
+    proxy: {
+      '/api': 'http://localhost:8080'
+    },
+  },
+  optimization: {
+    minimize: true,
+    minimizer: [new TerserPlugin()]
   },
   plugins: [
     new CleanWebpackPlugin(),
