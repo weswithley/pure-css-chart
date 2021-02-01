@@ -6,9 +6,7 @@ const app = express();
 
 app.use(express.static('bundle'));
 app.get('/api/fiveforecast', async (req, res) => {
-  console.log('req-', req);
   const cityWithForecast = await getFiveDaysForcast('taipei');
-  console.log('api/forecast-', cityWithForecast);
   return res.send(cityWithForecast);
 })
 
