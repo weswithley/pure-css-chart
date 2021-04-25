@@ -11,6 +11,7 @@ import { MainContext, mainEnum } from '../context/context';
 import { getFiveDaysForcast } from '../toolkit/toolkit';
 
 // components
+import { Loading } from './Loading';
 import { Wrapper } from './Wrapper';
 
 // scss
@@ -20,6 +21,7 @@ export const App = () => {
   const { defaultCity, dataList, mainlyReducer } = mainEnum;
   const [newDataList, mainlyReducerDispatch] = useReducer(mainlyReducer, dataList);
   const [newCity, mainlyStateDispatch] = useState(defaultCity);
+  const [fadeOut, mainlyLoadingStateDispatch] = useState(false);
   const context = { defaultCity, newCity, mainlyStateDispatch, newDataList, mainlyReducerDispatch };
 
   useEffect(
@@ -35,6 +37,7 @@ export const App = () => {
 
         const tempCity = cityWithForecast['parent']['title'] + '/' + cityWithForecast['title']
         mainlyStateDispatch(tempCity);
+        mainlyLoadingStateDispatch(true)
 
       })()
 
@@ -43,6 +46,7 @@ export const App = () => {
 
   return (
     <MainContext.Provider value={context}>
+      <Loading fadeOut={fadeOut}></Loading>
       <Wrapper></Wrapper>
     </MainContext.Provider>
   );

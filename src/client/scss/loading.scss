@@ -1,0 +1,60 @@
+.loading {
+  width: 100vw;
+  min-height: 100%;
+  position: absolute;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  background-color: #bbbbbb;
+  opacity: 1;
+
+  &.fadeOut{
+    animation: fadeOut 0.8s forwards;
+    -webkit-animation: fadeOut 0.8s forwards;
+    -moz-animation: fadeOut 0.8s forwards;
+    -o-animation: fadeOut 0.8s forwards;
+    -ms-animation: fadeOut 0.8s forwards;
+  }
+
+  &:after{
+    content: " ";
+    display: block;
+    width: 64px;
+    height: 64px;
+    align-items: center;
+    justify-items: center;
+    border-radius: 50%;
+    border: 6px solid #fff;
+    position: absolute;
+    top: 50%;
+    margin-top: -32px;
+    margin-left: -32px;
+    left: 50%;
+    border-color: #fff transparent #fff transparent;
+    animation: loadingAnimation 1.2s linear infinite;
+    -webkit-animation: loadingAnimation 1.2s linear infinite;
+    -moz-animation: loadingAnimation 1.2s linear infinite;
+    -o-animation: loadingAnimation 1.2s linear infinite;
+    -ms-animation: loadingAnimation 1.2s linear infinite;
+  }
+}
+
+@keyframes loadingAnimation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    visibility: visible;
+  }
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
