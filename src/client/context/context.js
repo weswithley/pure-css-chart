@@ -6,7 +6,7 @@ import { actionFilterList } from '../action/action';
 // reducer
 import { mainlyReducer } from '../reducer/reducer';
 
-const defaultCity = 'taipei';
+const defaultCity = 'Location fetching...';
 
 // fetching data list
 const dataList = []

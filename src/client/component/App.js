@@ -21,8 +21,8 @@ export const App = () => {
   const { defaultCity, dataList, mainlyReducer } = mainEnum;
   const [newDataList, mainlyReducerDispatch] = useReducer(mainlyReducer, dataList);
   const [newCity, mainlyStateDispatch] = useState(defaultCity);
-  const [fadeOut, mainlyLoadingStateDispatch] = useState(false);
-  const context = { defaultCity, newCity, mainlyStateDispatch, newDataList, mainlyReducerDispatch };
+  const [loadingDone, mainlyLoadingStateDispatch] = useState(false);
+  const context = { defaultCity, newCity, mainlyStateDispatch, newDataList, mainlyReducerDispatch, loadingDone };
 
   useEffect(
     () => {
@@ -46,7 +46,7 @@ export const App = () => {
 
   return (
     <MainContext.Provider value={context}>
-      <Loading fadeOut={fadeOut}></Loading>
+      <Loading fadeOut={loadingDone}></Loading>
       <Wrapper></Wrapper>
     </MainContext.Provider>
   );
