@@ -19,17 +19,19 @@ export const BarChart = (props) => {
       <div className="chart-body">
         {
           chartList.map((chartValue, index) => {
+            const tranlateYValue = 'translateY(' + Math.ceil(chartValue / (end + 10) * 100) + '%)';
             const chartStyle = {
-              height: Math.ceil(chartValue / (end + 10) * 100) + '%'
+              height: Math.ceil(chartValue / (end + 10) * 100) + '%',
+              animationDuration: (index/5) + 's'
             }
 
             const thisYear = new Date().getFullYear() + '-';
-            const tempDate = date[index].split(thisYear)[1].replace('-', '/');
+            const chartDate = date[index].split(thisYear)[1].replace('-', '/');
 
             return (
               <div className="chart-body-item" style={chartStyle} key={'bar-chart-body-item-' + index}>
                 <div className="chart-body-value">{chartValue + transformedUnit}</div>
-                <div className="chart-body-date">{tempDate}</div>
+                <div className="chart-body-date">{chartDate}</div>
               </div>
             )
           })

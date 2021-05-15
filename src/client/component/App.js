@@ -46,7 +46,7 @@ export const App = () => {
 
   return (
     <MainContext.Provider value={context}>
-      <Loading fadeOut={loadingDone}></Loading>
+      {/* <Loading fadeOut={loadingDone}></Loading> */}
       <Wrapper></Wrapper>
     </MainContext.Provider>
   );

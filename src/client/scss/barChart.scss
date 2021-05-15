@@ -15,13 +15,14 @@
     grid-gap: 20px;
     & > .chart-body-item{
       display: flex;
-      height: 0;
+      height: 0px;
       align-self: flex-end;
       align-items: center;
       justify-content: center;
       background-color: #18b9be;
       margin-bottom: 15px;
       position: relative;
+      animation: chart-grow;
 
       & > .chart-body-value{
         color: #18b9be;
@@ -110,4 +111,16 @@
       }
     }
   }
+}
+
+@-webkit-keyframes chart-grow {
+  0% { height: 0; }
+}
+
+@-moz-keyframes chart-grow {
+  0% { height: 0; }
+}
+
+@keyframes chart-grow {
+  0% { height: 0; }
 }

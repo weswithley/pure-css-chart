@@ -20,6 +20,7 @@
       width: 150px;
       height: 150px;
       margin: 0 auto;
+      background: conic-gradient(#0094d8 0% 0%, #cacaca 0%);
       @include radius(50%);
     }
   }
