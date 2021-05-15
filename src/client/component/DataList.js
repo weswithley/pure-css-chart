@@ -32,7 +32,7 @@ const organizePieChartList = (date, unit, chartList) => {
 }
 
 export const DataList = () => {
-  const { newCity, newDataList } = useContext(MainContext);
+  const { newCity, newDataList, loadingDone } = useContext(MainContext);
 
   const dateTempList = newDataList.map((data) => { return data['applicable_date'] });
   const maxTempList = newDataList.map((data) => { return Math.round(data['max_temp']) });
@@ -41,21 +41,24 @@ export const DataList = () => {
   const maxChartData = organizeBarChartList(dateTempList, 0, 50, 'temperature', maxTempList);
   const minChartData = organizeBarChartList(dateTempList, 0, 50, 'temperature', minTempList);
   const humChartData = organizePieChartList(dateTempList, 'percentage', huminityList);
+  const dataTitleClassName = loadingDone ? 'loaded-data-title' : 'loading-data-title';
 
   return (
     <div className="data-list">
       <div className="data-title">
-        <div>{newCity}</div>
+        <div className={dataTitleClassName}>{newCity}</div>
         <div>5 days forcast max temprature</div>
       </div>
       <BarChart chartData={maxChartData}></BarChart>
+
       <div className="data-title">
-        <div>{newCity}</div>
+        <div className={dataTitleClassName}>{newCity}</div>
         <div>5 days forcast min temprature</div>
       </div>
       <BarChart chartData={minChartData}></BarChart>
+
       <div className="data-title">
-        <div>{newCity}</div>
+        <div className={dataTitleClassName}>{newCity}</div>
         <div>5 days forcast huminity</div>
       </div>
       <PieChart chartData={humChartData}></PieChart>

@@ -16,19 +16,19 @@ export const PieChart = (props) => {
     <div className="pie-chart-warp">
       {
         chartList.map((chartValue, index) => {
-            const chartDegree = Math.round(chartValue / 100 * 360);
-            const chartStyle = {
-              backgroundImage: `conic-gradient(#1889be 0deg ${chartDegree + 'deg'}, #aaaaaa ${chartDegree + 'deg'})`
-            }
+          const chartDegree = Math.round(chartValue / 100 * 360);
+          const chartStyle = {
+            background: `conic-gradient(#0094d8 0 ${chartDegree + 'deg'}, #cacaca 0)`
+          }
 
-            return (
-              <div className="chart-body" key={'pie-chart-body-item-' + index}>
-                <div className="chart-body-value">{chartValue + transformedUnit}</div>
-                <div style={chartStyle} className="chart-body-item"></div>
-              </div>
-            )
-          })
-        }
+          return (
+            <div className="chart-body" key={'pie-chart-body-item-' + index}>
+              <div className="chart-body-value">{chartValue + transformedUnit}</div>
+              <div style={chartStyle} className="chart-body-item"></div>
+            </div>
+          )
+        })
+      }
     </div>
   )
 };

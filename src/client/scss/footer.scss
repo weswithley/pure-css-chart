@@ -1,0 +1,14 @@
+footer{
+  width: 100%;
+  text-align: center;
+  margin: 20px auto;
+  color: #999;
+  & a,
+  & a:active,
+  & a:focus :hover,
+  & a:link,
+  & a:visited {
+    color: #999;
+    text-decoration: underline;
+  }
+}
