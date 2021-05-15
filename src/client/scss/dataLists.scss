@@ -1,13 +1,14 @@
 .data-list{
   & .data-title{
-    margin-top: 60px;
-    margin-bottom: 10px;
-    font-size: 2rem;
-    & .c{
-      color: #18b9be;
+    margin: 70px 0;
+    font-size: 1.6rem;
+    color: #999999;
+    & .loaded-data-title{
+      font-size: 2rem;
+      color: #666;
     }
     & .loading-data-title{
-      color: #999999;
+      font-size: 2rem;
     }
   }
 }

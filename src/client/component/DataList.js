@@ -50,11 +50,13 @@ export const DataList = () => {
         <div>5 days forcast max temprature</div>
       </div>
       <BarChart chartData={maxChartData}></BarChart>
+
       <div className="data-title">
         <div className={dataTitleClassName}>{newCity}</div>
         <div>5 days forcast min temprature</div>
       </div>
       <BarChart chartData={minChartData}></BarChart>
+
       <div className="data-title">
         <div className={dataTitleClassName}>{newCity}</div>
         <div>5 days forcast huminity</div>
