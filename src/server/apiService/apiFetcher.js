@@ -6,7 +6,7 @@ const apiFetcher = {
   'getFiveForecast': () => {
     const path = apiPathList['fiveForecast'];
     const params = {
-      key: apiKey,
+      key: apiKey || process.env.API_KEY,
       q: 'Taiwan',
       days: '5',
       aqi: 'no',
