@@ -4,17 +4,14 @@ import React from 'react';
 import { actionFilterList } from '../action/action';
 
 // reducer
-import { mainlyReducer } from '../reducer/reducer';
+import { setForecastDataReducer } from '../reducer/reducer';
 
-const defaultCity = 'Location fetching...';
+// fetching data
+const forecastData = {};
 
-// fetching data list
-const dataList = []
-
-export const mainEnum = {
-  defaultCity,
-  dataList,
-  mainlyReducer
+export const mainStore = {
+  forecastData,
+  setForecastDataReducer
 }
 
-export const MainContext = React.createContext(mainEnum);
+export const MainContext = React.createContext(mainStore);

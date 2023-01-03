@@ -1,5 +1,5 @@
-.data-list{
-  & .data-title{
+.forecast-container{
+  & .forecast-title{
     margin: 70px 0;
     font-size: 1.6rem;
     color: #999999;
@@ -14,8 +14,8 @@
 }
 
 @media (max-width:1024px){
-  .data-list{
-    & .data-title{
+  .forecast-container{
+    & .forecast-title{
       margin-top: 40px;
       font-size: 1.5rem;
     }
@@ -23,8 +23,8 @@
 }
 
 @media (max-width:768px){
-  .data-list{
-    & .data-title{
+  .forecast-container{
+    & .forecast-title{
       font-size: 1rem;
     }
   }

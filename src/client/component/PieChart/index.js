@@ -2,10 +2,10 @@
 import React, { Fragment } from 'react';
 
 // toolkit
-import { transformUnit } from '../toolkit/toolkit';
+import { transformUnit } from '../../toolkit/toolkit';
 
 // scss
-import '../scss/pieChart.scss';
+import pieChartCss from './pie-chart.module.scss';
 
 export const PieChart = (props) => {
   const { chartData } = props;
@@ -13,7 +13,7 @@ export const PieChart = (props) => {
   const transformedUnit = transformUnit(unit);
 
   return(
-    <div className="pie-chart-warp">
+    <div className={pieChartCss['pie-chart-warp']}>
       {
         chartList.map((chartValue, index) => {
           const chartDegree = Math.round(chartValue / 100 * 360);
@@ -22,9 +22,9 @@ export const PieChart = (props) => {
           }
 
           return (
-            <div className="chart-body" key={'pie-chart-body-item-' + index}>
-              <div className="chart-body-value">{chartValue + transformedUnit}</div>
-              <div style={chartStyle} className="chart-body-item"></div>
+            <div className={pieChartCss['chart-body']} key={'pie-chart-body-item-' + index}>
+              <div className={pieChartCss['chart-body-value']}>{chartValue + transformedUnit}</div>
+              <div style={chartStyle} className={pieChartCss['chart-body-item']}></div>
             </div>
           )
         })

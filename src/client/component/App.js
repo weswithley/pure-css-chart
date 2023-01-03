@@ -5,10 +5,10 @@ import React, { useEffect, useReducer, useState } from 'react';
 import { actionFilterList } from '../action/action'
 
 // store
-import { MainContext, mainEnum } from '../context/context';
+import { MainContext, mainStore } from '../context/context';
 
-// toolkit
-import { getFiveDaysForcast } from '../toolkit/toolkit';
+// api fetcher
+import { apiPathList, apiFetcher } from '../apiService';
 
 // components
 import { Loading } from './Loading';
@@ -18,31 +18,31 @@ import { Wrapper } from './Wrapper';
 import '../scss/style.scss';
 
 export const App = () => {
-  const { defaultCity, dataList, mainlyReducer } = mainEnum;
-  const [newDataList, mainlyReducerDispatch] = useReducer(mainlyReducer, dataList);
-  const [newCity, mainlyStateDispatch] = useState(defaultCity);
-  const [loadingDone, mainlyLoadingStateDispatch] = useState(false);
-  const context = { defaultCity, newCity, mainlyStateDispatch, newDataList, mainlyReducerDispatch, loadingDone };
+  const { forecastData, setForecastDataReducer } = mainStore;
+  const [ newForecastData, setNewForecastDataReducer ] = useReducer(setForecastDataReducer, {...forecastData});
+  const [ isLoading, setIsLoading ] = useState(false);
 
-  useEffect(
-    () => {
-      (async () => {
-        const cityWithForecast = await getFiveDaysForcast(defaultCity);
+  const context = {
+    newForecastData,
+    setNewForecastDataReducer,
+    isLoading,
+    setIsLoading
+  };
+
+  useEffect(() => {
+    (async () => {
+        const forecast = await apiFetcher.getFiveForecast();
         const resultData = {
           type: actionFilterList.INIT,
-          cityWithForecast
+          forecast
         }
 
-        mainlyReducerDispatch(resultData);
+        setNewForecastDataReducer(resultData);
+        setIsLoading(true);
 
-        const tempCity = cityWithForecast['parent']['title'] + '/' + cityWithForecast['title']
-        mainlyStateDispatch(tempCity);
-        mainlyLoadingStateDispatch(true)
+    })();
 
-      })()
-
-    }, [dataList]
-  )
+  }, [])
 
   return (
     <MainContext.Provider value={context}>

@@ -2,10 +2,10 @@
 import React from 'react';
 
 // toolkit
-import { organizePeriodList, transformUnit } from '../toolkit/toolkit';
+import { organizePeriodList, transformUnit } from '../../toolkit/toolkit';
 
 // scss
-import '../scss/barChart.scss';
+import barChartCSS from './bar-chart.module.scss';
 
 export const BarChart = (props) => {
   const { chartData } = props;
@@ -15,8 +15,8 @@ export const BarChart = (props) => {
   const transformedUnit = transformUnit(unit);
 
   return (
-    <div className="bar-chart-warp">
-      <div className="chart-body">
+    <div className={barChartCSS['bar-chart-warp']}>
+      <div className={barChartCSS['chart-body']}>
         {
           chartList.map((chartValue, index) => {
             const tranlateYValue = 'translateY(' + Math.ceil(chartValue / (end + 10) * 100) + '%)';
@@ -29,23 +29,23 @@ export const BarChart = (props) => {
             const chartDate = date[index].split(thisYear)[1].replace('-', '/');
 
             return (
-              <div className="chart-body-item" style={chartStyle} key={'bar-chart-body-item-' + index}>
-                <div className="chart-body-value">{chartValue + transformedUnit}</div>
-                <div className="chart-body-date">{chartDate}</div>
+              <div className={barChartCSS['chart-body-item']} style={chartStyle} key={'bar-chart-body-item-' + index}>
+                <div className={barChartCSS['chart-body-value']}>{chartValue + transformedUnit}</div>
+                <div className={barChartCSS['chart-body-date']}>{chartDate}</div>
               </div>
             )
           })
         }
       </div>
-      <div className="chart-bg">
+      <div className={barChartCSS['chart-bg']}>
         {
           periodList.map((period, index) => {
             return (
-              <div key={'bar-chart-bg-item-' + index} className="chart-bg-item">
-                <div className="chart-bg-line">
+              <div key={'bar-chart-bg-item-' + index} className={barChartCSS['chart-bg-item']}>
+                <div className={barChartCSS['chart-bg-line']}>
                   <hr></hr>
                 </div>
-                <div className="chart-bg-value">
+                <div className={barChartCSS['chart-bg-value']}>
                   <span>{period}</span>
                   <span>{transformedUnit}</span>
                 </div>
