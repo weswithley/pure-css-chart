@@ -1,8 +1,10 @@
 footer{
   width: 100%;
   text-align: center;
-  margin: 20px auto;
+  padding: 40px 0;
   color: #999;
+  flex-shrink: 0;
+
   & a,
   & a:active,
   & a:focus :hover,
