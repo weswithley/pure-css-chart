@@ -5,7 +5,7 @@ html, body{
 }
 body {
   max-width: 1370px;
-  width: 100vw;
+  width: 100%;
   margin: 0;
   padding: 0;
   background-color: #eeeeee;
@@ -19,7 +19,9 @@ body {
 }
 
 #root{
-  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;;
 }
 
 a,
@@ -40,9 +42,4 @@ a:visited {
 input,
 button {
   outline: none;
-}
-
-.wrapper {
-  min-height: 100vh;
-  padding: 20px;
 }
