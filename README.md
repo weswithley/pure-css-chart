@@ -1,4 +1,5 @@
 # Pure CSS chart
-Using pure CSS and React to build a weather chart for self practicing.
+Using pure CSS and pure React to build a weather chart for self practicing.
 
-> _Open API from : https://www.metaweather.com/_
+-
+- Open API from : https://www.weatherapi.com

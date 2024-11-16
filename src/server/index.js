@@ -1,20 +1,28 @@
 const express = require('express');
 const app = express();
 const middleWarePort = process.env.PORT || 8080;
+const { apiKey } = require('./config/index.js');
 
-const { apiFetcher } = require('./apiService/index.js');
+const { routers } = require('./apiService/index.js');
 
 app.use(express.static('bundle'));
 
-app.get('/api/fiveforecast', async (req, res) => {
-  let response = null;
+app.use('/', (req, res, next) => {
+  if(!apiKey) return res.status(401).send("You don't have any API key.");
+  next();
+});
+
+app.get('/api/getWeatherForecast', async (req, res) => {
+  let result = null;
+
   try{
-    response = await apiFetcher['getFiveForecast']();
+    const forecaster = await routers['getWeatherForecast']();
+    result = res.status(200).send(forecaster);
   }catch(err){
-    response = err;
+    result = res.status(401).send(err);
   }
 
-  return res.send(response);
+  return result;
 })
 
 app.listen(middleWarePort, () => console.log(`Listening on ${middleWarePort}`));

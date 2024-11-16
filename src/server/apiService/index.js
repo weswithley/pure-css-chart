@@ -1,7 +1,7 @@
-const apiPathList = require('./apiPathList.js');
-const apiFetcher = require('./apiFetcher.js');
+const paths = require('./paths.js');
+const routers = require('./routers.js');
 
 module.exports = {
-  apiPathList,
-  apiFetcher
+  paths,
+  routers
 }
